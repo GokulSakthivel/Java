@@ -1,19 +1,85 @@
-Find the one digit to be removed to form palindrome:
+Message controlled robot movement with 90 degrees turning capability and 1 unit moving capability
 
-Assume that the given number input1 can become a palindrome if only one of its digit is removed. i.e. only one digit into the number is out of place. Find the digit that needs to be removed from input1 to convert input1 to a palindrome.
+Harish, an engineering student needs to submit his final year project. He decides to create a Robot which can be controlled by a set of instructions. He also decides that grid ( of  X and Y axis)should be defined and the robot  should move only within that grid. The set of instructions to move the robot should be given as a single message(string) and the Robot should accordingly move and reach the expected location. If the given instructions lead to a position which is out of the given grid, the Robot should stop at the last valid instruction.
 
-Example 1:input1=12332 the digit 1 is to be removed to convert input1 to palindrome.
+Harish decides to write a function named moveRobot  that should process the given inputs and return a string representing the final position of the Robot.
 
-                So, return the Output=1
+The function moveRobot will take 4 input parameters that define the size of the grid(X and Y axis), the current position of the Robot, and the message(string) containing the set of movement instructions.
 
-Example 2:input1=251532 the digit 3 is to be removed to convert input1 to palindrome.
+The first two input parameters define the size of the grid.
 
-         So, return the Output=3
+input1 =X axis of the grid
 
-Example 3:input1=10101 no digit needs to be removed to the digit 1 is to be removed to convert input1 to palindrome. Because, it is already a palindrome.
+input2=Y axis of the grid
 
-                  So, return the Output=-1
+Note that input1 and input2 will always be >0.So,the valid grid area for the robot’s movement should be the rectangular area formed between the diagonal ends (0,0) and (X,Y)
 
-Example 4:input1=981894 the digit 4 is to be removed to convert input1 to palindrome.
+The third parameter defines the current (starting) position of the robot.
 
-                  Return the Output=4
+Input3=current position of the robot, represented as a string containing 3 values separated by   a  -(hyphen).The format of input3 is x-y-D, where x and y represent the current(starting) position of the robot and D represents the direction where the robot is currently facing. Valid values for direction D are E,W,N, or S, representing East, West, North, and South respectively.
+
+The fourth input parameter represents the single message containing the set of instructions to move the robot.
+
+input4 =movement instructions to the robot, represented as a string containing the instructions separated by a space. The message will consist of a series of M,L or R ,where
+
+M means “Move 1 unit forward in the direction that the robot is facing”.
+
+L  means “Turn 90° towards left”, and
+
+R  means “Turn 90° towards right”.
+
+ 
+
+Output expected to be returned by the function –
+
+The function is expected to process the given inputs and return a string representing the final position of the Robot. The returned string should be of the format x-y-D ,where x and y represent the final(end) position of the robot and D represents the direction where the robot is finally facing. Valid values for direction D are E,W,N, or S, representing East, West, North and South respectively. Note that an “-ER” must be appended to the output string if the traversal finally stopped due to an invalid move (see the below two examples for more clarity on this)
+
+Note:
+
+1.You can assume the grid to be similar to the 1st quadrant of the regular graph sheet. In a regular graph sheet of dimensions x units and y units,(0,0) is the bottom left corner and (X,Y) is the top right corner. Ex: For a grid of 5 x 5,the bottom left corner will be (0,0) and top right corner will be(5,5).
+
+2.The starting position of the robot (third input parameter) will be any position on the grid.i.e.it need      not always be (0,0)
+
+3.You can assume that the current position (starting position, specified in input3) will always be a valid position within the specified grid.
+
+4.IMPORTANT – Note that the instructions L and R only change the direction of the robot without moving it .The instruction M moves the robot 1 unit forward in the direction that the robot is facing.
+
+5.Invalid moves should not be allowed- Any move that could lead the robot to a position beyond (outside) the defined x and y axis of the grid OR below 0 on either x or y axis, should be considered an invalid move.(see below examples to get clarity)
+
+Example1-
+
+input1: x=3
+
+input2: y=3
+
+input3: 2-2-E
+
+input4: R M L M L M
+
+Output: The function should return 3-2-N
+
+Explanation:
+
+The size  of the grid 3x3 units. Current (starting) position of the robot is ( 2, 2 ) facing East. After processing the set of instructions given in input4, the new position will be in ( 3 , 2 ) facing North. So, the function is expected to return the output in the format x-y-D i.e. 3-2-N
+
+ 
+
+Example2-
+
+input1: x=3
+
+input2: y=4
+
+input3: 2-2-E
+
+input4: R M L M L M R M
+
+Output: The function should return 3-2-E-ER
+
+Explanation:
+
+The size of the grid is 3x4 units. Current (starting) position of the robot is (2,2) facing East. After processing the set of instructions given in input4,the new position will be in (3,2) facing East .Note that the last instruction (M) leads to a position outside the grid, so the valid moves stop at R which is the second last instruction .In this case, the function is expected to return the output representing the last valid position appended with “-ER” representing ERROR. So, the function should return the output as       3-3-E-ER
+
+IMPORTANT NOTE: The output format should be strictly as specified above. Any extra spaces before, after or within the output string will result in failure. Also, the alphabets in the output string should be in upper-case.
+
+NOTE: The above few examples are only to help you understand the question. The actual test-case values will be different from these, so you must ensure to check the result for all possible cases.
